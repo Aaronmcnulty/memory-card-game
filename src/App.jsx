@@ -28,7 +28,7 @@ function fetchPokeData(pokemonUrl){
 function choosePokes(){
   setChosenPokemon([])
   let pokeNums = []
-  while(pokeNums.length < 10){
+  while(pokeNums.length < 12){
     let integer = getRandomInt(100)
       if(!pokeNums.includes(pokeData.results[integer])){
         pokeNums.push(pokeData.results[integer])
@@ -55,8 +55,8 @@ const handleChoosePokes = () => {
         {chosenPokemon && chosenPokemon.map(item =>{
           return (
             <div key={item.name}>
-            <img src={item.sprites.other.home.front_default}></img>    
-            <li  >{item.name}</li>
+            <img width={"150px"} height={'150px'} src={item.sprites.other.dream_world.front_default}></img>    
+            <li>{item.name}</li>
           </div>
           )
           
