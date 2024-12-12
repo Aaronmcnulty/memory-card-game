@@ -3,20 +3,24 @@ import './App.css'
 import { useEffect } from 'react'
 import { getRandomInt } from './modules/randomInt'
 
+
+
 function App() {
 
 // https://pokeapi.co/api/v2/pokemon/ditto
 const  [pokeData, setPokeData] = useState([])
 const   [chosenPokemon, setChosenPokemon] = useState([])
 
+// On load the API minimal list of pokemon (name and url only) is fetched and stored in state
   useEffect(() =>{
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0', {mode: "cors"})
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=150&offset=0', {mode: "cors"})
     .then((response) => response.json())
     .then((response) => setPokeData(response))
     .catch((error) => console.error(error))
 }, [])
 
-function fetchPokeData(pokemonUrl){
+
+function fetchIndividualPokedata(pokemonUrl){
   fetch (pokemonUrl, {mode: "cors"})
   .then((response) => response.json())
   .then((response) =>  setChosenPokemon((chosenPokemon) => ([...chosenPokemon, response])))
@@ -29,14 +33,14 @@ function choosePokes(){
   setChosenPokemon([])
   let pokeNums = []
   while(pokeNums.length < 12){
-    let integer = getRandomInt(100)
+    let integer = getRandomInt(150)
       if(!pokeNums.includes(pokeData.results[integer])){
         pokeNums.push(pokeData.results[integer])
       }
   }
   console.log(pokeNums)
   pokeNums.map(item => {
-    fetchPokeData(item.url)
+    fetchIndividualPokedata(item.url, setChosenPokemon, chosenPokemon )
   })
 }
 
