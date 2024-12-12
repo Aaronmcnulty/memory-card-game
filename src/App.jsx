@@ -1,5 +1,38 @@
-
+import { useState } from 'react'
 import './App.css'
+import { useEffect } from 'react'
+
+
+function App() {
+
+// https://pokeapi.co/api/v2/pokemon/ditto
+const  [dittoData, setDittoData] = useState([])
+
+  useEffect(() =>{
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0', {mode: "cors"})
+    .then((response) => response.json())
+    .then((response) => setDittoData(response))
+    .catch((error) => console.error(error))
+    
+}, [])
+
+if(dittoData.results){
+  console.log(dittoData.results[0].name)
+  console.log(dittoData.results[2].name)
+}
+
+
+  return (
+    <>
+       <p>PonkeyMong</p> 
+       {dittoData.results && <p>{dittoData.results[0].name}</p>}
+
+    </>
+  )
+}
+
+export default App
+
 
 {/* 
   
@@ -67,30 +100,4 @@ import './App.css'
 
       - Remove Current score
 
-
-
-
-
-
-
   */}
-
-
-
-
-function App() {
-
-
-
-
-
-
-
-  return (
-    <>
-      
-    </>
-  )
-}
-
-export default App
