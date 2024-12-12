@@ -1,32 +1,68 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
-
+import { getRandomInt } from './modules/randomInt'
 
 function App() {
 
 // https://pokeapi.co/api/v2/pokemon/ditto
-const  [dittoData, setDittoData] = useState([])
+const  [pokeData, setPokeData] = useState([])
+const   [chosenPokemon, setChosenPokemon] = useState([])
 
   useEffect(() =>{
     fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0', {mode: "cors"})
     .then((response) => response.json())
-    .then((response) => setDittoData(response))
+    .then((response) => setPokeData(response))
     .catch((error) => console.error(error))
-    
 }, [])
 
-if(dittoData.results){
-  console.log(dittoData.results[0].name)
-  console.log(dittoData.results[2].name)
+function fetchPokeData(pokemonUrl){
+  fetch (pokemonUrl, {mode: "cors"})
+  .then((response) => response.json())
+  .then((response) =>  setChosenPokemon((chosenPokemon) => ([...chosenPokemon, response])))
+  .catch((error) => console.error(error))
 }
 
+
+
+function choosePokes(){
+  setChosenPokemon([])
+  let pokeNums = []
+  while(pokeNums.length < 10){
+    let integer = getRandomInt(100)
+      if(!pokeNums.includes(pokeData.results[integer])){
+        pokeNums.push(pokeData.results[integer])
+      }
+  }
+  console.log(pokeNums)
+  pokeNums.map(item => {
+    fetchPokeData(item.url)
+  })
+}
+
+console.log(chosenPokemon)
+
+const handleChoosePokes = () => {
+  choosePokes()
+}
 
   return (
     <>
        <p>PonkeyMong</p> 
-       {dittoData.results && <p>{dittoData.results[0].name}</p>}
-
+       {pokeData.results && <p>{pokeData.results[0].name}</p>}
+      <button onClick={handleChoosePokes}>Start</button>
+      <ul>
+        {chosenPokemon && chosenPokemon.map(item =>{
+          return (
+            <div key={item.name}>
+            <img src={item.sprites.other.home.front_default}></img>    
+            <li  >{item.name}</li>
+          </div>
+          )
+          
+          
+        })}
+      </ul>
     </>
   )
 }
