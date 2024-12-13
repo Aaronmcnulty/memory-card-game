@@ -2,11 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
 import { getRandomInt } from './modules/randomInt'
+import CardTemplate from './components/cardDisplay/CardTemplate'
 
 
 
 function App() {
-
 // https://pokeapi.co/api/v2/pokemon/ditto
 const  [pokeData, setPokeData] = useState([])
 const   [chosenPokemon, setChosenPokemon] = useState([])
@@ -52,21 +52,22 @@ const handleChoosePokes = () => {
 
   return (
     <>
-       <p>PonkeyMong</p> 
-       {pokeData.results && <p>{pokeData.results[0].name}</p>}
-      <button onClick={handleChoosePokes}>Start</button>
-      <ul>
-        {chosenPokemon && chosenPokemon.map(item =>{
+       
+      <div id={'stuff-container'}>
+        <p>PonkeyMong</p>
+        {pokeData.results && <p>{pokeData.results[0].name}</p>}
+        <button onClick={handleChoosePokes}>Start</button>
+
+      </div>
+      <div id={'cards-container'}>
+        {chosenPokemon && chosenPokemon.map(item => {
           return (
-            <div key={item.name}>
-            <img width={"150px"} height={'150px'} src={item.sprites.other.dream_world.front_default}></img>    
-            <li>{item.name}</li>
-          </div>
+            <CardTemplate key={item.name + 1} cardData={item} />
           )
-          
-          
         })}
-      </ul>
+      </div>
+
+
     </>
   )
 }
