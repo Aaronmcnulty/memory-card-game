@@ -1,8 +1,11 @@
 
-function CardTemplate({ cardData }){
+function CardTemplate({ cardData, clickedCards, setClickedCards }){
+
+
 
 const handleCardClick = () => {
-    console.log(cardData.name)
+    setClickedCards((clickedCards) => ([...clickedCards, cardData.name]))
+    console.log(clickedCards)
 }
 
 return(

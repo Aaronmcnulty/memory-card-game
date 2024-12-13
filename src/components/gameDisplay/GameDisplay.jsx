@@ -1,7 +1,7 @@
 import CardTemplate from "../cardDisplay/CardTemplate";
 
 
-function GameDisplay({ chosenPokemon }){
+function GameDisplay({ chosenPokemon, clickedCards, setClickedCards, handleCardClick}){
 
     return(
 
@@ -10,7 +10,7 @@ function GameDisplay({ chosenPokemon }){
             <div id={'cards-container'}>
                 {chosenPokemon && chosenPokemon.map(item => {
                     return (
-                        <CardTemplate key={item.name + 1} cardData={item} />
+                        <CardTemplate handleCardClick={handleCardClick} key={item.name + 1} cardData={item}  clickedCards={clickedCards} setClickedCards={setClickedCards}/>
                     )
                 })}
             </div>

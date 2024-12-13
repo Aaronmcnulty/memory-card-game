@@ -2,15 +2,17 @@ import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
 import { getRandomInt } from './modules/randomInt'
-import CardTemplate from './components/cardDisplay/CardTemplate'
 import GameDisplay from './components/gameDisplay/GameDisplay'
+import ScoreBoard from './components/scoreBoard/ScoreBoard'
 
 
 
 function App() {
 // https://pokeapi.co/api/v2/pokemon/ditto
-const  [pokeData, setPokeData] = useState([])
-const   [chosenPokemon, setChosenPokemon] = useState([])
+const [pokeData, setPokeData] = useState([])
+const [chosenPokemon, setChosenPokemon] = useState([])
+const [clickedCards, setClickedCards] = useState([])
+
 
 // On load the API minimal list of pokemon (name and url only) is fetched and stored in state
   useEffect(() =>{
@@ -41,15 +43,18 @@ function choosePokes(){
   }
   console.log(pokeNums)
   pokeNums.map(item => {
-    fetchIndividualPokedata(item.url, setChosenPokemon, chosenPokemon )
+    fetchIndividualPokedata(item.url)
   })
 }
 
 console.log(chosenPokemon)
 
 const handleChoosePokes = () => {
+  setClickedCards([])
   choosePokes()
 }
+
+
 
   return (
     <>
@@ -60,8 +65,8 @@ const handleChoosePokes = () => {
         <button onClick={handleChoosePokes}>Start</button>
       </div>
 
-
-      <GameDisplay chosenPokemon={chosenPokemon}/>      
+      <ScoreBoard clickedCards={clickedCards}/>
+      <GameDisplay chosenPokemon={chosenPokemon} clickedCards={clickedCards} setClickedCards={setClickedCards}/>      
 
     </>
   )
