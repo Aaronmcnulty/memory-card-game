@@ -54,7 +54,12 @@ const handleChoosePokes = () => {
   choosePokes()
 }
 
+const handleCardClick = (event) => {
 
+  console.log(event.target.id)
+  setClickedCards((clickedCards) => ([...clickedCards, event.target.id]))
+  console.log(clickedCards)
+}
 
   return (
     <>
@@ -66,7 +71,7 @@ const handleChoosePokes = () => {
       </div>
 
       <ScoreBoard clickedCards={clickedCards}/>
-      <GameDisplay chosenPokemon={chosenPokemon} clickedCards={clickedCards} setClickedCards={setClickedCards}/>      
+      <GameDisplay handleCardClick={handleCardClick} chosenPokemon={chosenPokemon} clickedCards={clickedCards} setClickedCards={setClickedCards}/>      
 
     </>
   )
