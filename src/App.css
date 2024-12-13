@@ -10,6 +10,14 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+#game-display-container{
+  border: solid;
+  border-radius: 15px;
+  background-color: teal;
+  padding: 20px;
+}
+
 .pokemon-card{
   display: flex;
 

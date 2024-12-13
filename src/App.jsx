@@ -3,6 +3,7 @@ import './App.css'
 import { useEffect } from 'react'
 import { getRandomInt } from './modules/randomInt'
 import CardTemplate from './components/cardDisplay/CardTemplate'
+import GameDisplay from './components/gameDisplay/GameDisplay'
 
 
 
@@ -54,19 +55,13 @@ const handleChoosePokes = () => {
     <>
        
       <div id={'stuff-container'}>
-        <p>PonkeyMong</p>
+        <h1>PonkeyMong</h1>
         {pokeData.results && <p>{pokeData.results[0].name}</p>}
         <button onClick={handleChoosePokes}>Start</button>
-
-      </div>
-      <div id={'cards-container'}>
-        {chosenPokemon && chosenPokemon.map(item => {
-          return (
-            <CardTemplate key={item.name + 1} cardData={item} />
-          )
-        })}
       </div>
 
+
+      <GameDisplay chosenPokemon={chosenPokemon}/>      
 
     </>
   )
