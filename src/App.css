@@ -1,5 +1,6 @@
 body{
   background-color: rgb(77, 77, 77);
+  
 }
 
 #root {
@@ -9,7 +10,7 @@ body{
   align-items: center;
   margin: 0.5em;
   width: 95%;
-  height: 98svh;
+  height: 95svh;
   
 }
 
@@ -145,4 +146,43 @@ img {
 .pokemon-card-image:hover{
   transition-duration:10s;
   transform:rotate(5045deg);
+}
+
+@media only screen and (min-width: 768px) {
+
+  body{
+    background-color: yellow;
+  }
+
+  .pokemon-card{
+    width: 12%;
+    height:40%;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+  body{
+    background-color: red;
+  }
+
+  .pokemon-card{
+    width: 12%;
+    height:40%;
+  }
+
+}
+
+@media only screen and (min-width: 1500px) {
+
+  body{
+    background-color: rgb(102, 255, 0);
+  }
+
+  .pokemon-card{
+    width: 12%;
+    height:40%;
+  }
+
 }
