@@ -47,6 +47,7 @@ button{
 
 .header{
   display: flex;
+  justify-content: center;
   width:90%;
   background-color: rgb(243, 230, 205);
   font-size: small;
