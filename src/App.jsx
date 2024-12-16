@@ -4,14 +4,17 @@ import { useEffect } from 'react'
 import { getRandomInt } from './modules/randomInt'
 import GameDisplay from './components/gameDisplay/GameDisplay'
 import ScoreBoard from './components/scoreBoard/ScoreBoard'
-
+import GameOverDisplay from './components/gameDisplay/GameOverDisplay'
 import { shuffle } from './modules/shuffle'
+import { updateHighScore } from './modules/updateHighScore'
 
 function App() {
 // https://pokeapi.co/api/v2/pokemon/ditto
 const [pokeData, setPokeData] = useState([])
 const [chosenPokemon, setChosenPokemon] = useState([])
 const [clickedCards, setClickedCards] = useState([])
+const [gameResults, setGameResults] = useState(null)
+const [highScore, setHighScore] = useState(null)
 
 
 // On load the API minimal list of pokemon (name and url only) is fetched and stored in state
@@ -55,13 +58,19 @@ const handleChoosePokes = () => {
 }
 
 const handleCardClick = (event) => {
-
   console.log(event.target.id)
-  setClickedCards((clickedCards) => ([...clickedCards, event.target.id]))
-  setChosenPokemon(shuffle(chosenPokemon))
-  console.log(clickedCards)
+  if(!clickedCards.includes(event.target.id)){
+    setClickedCards((clickedCards) => ([...clickedCards, event.target.id]))
+    setChosenPokemon(shuffle(chosenPokemon))
+  } else {
+    setChosenPokemon([])
+    setGameResults("You Lose")
+  }
 }
 
+  useEffect(() => {
+    updateHighScore(clickedCards, setHighScore, highScore)
+  })
 
 
 
@@ -69,12 +78,13 @@ const handleCardClick = (event) => {
     <>
        
       <div id={'stuff-container'}>
-        <h1>PonkeyMong</h1>
-        {pokeData.results && <p>{pokeData.results[0].name}</p>}
+        <h1>Memory Game</h1>
+        {pokeData.results && <p></p>}
         <button onClick={handleChoosePokes}>Start</button>
       </div>
 
-      <ScoreBoard clickedCards={clickedCards}/>
+      <ScoreBoard clickedCards={clickedCards} highScore={highScore}/>
+      {gameResults && <GameOverDisplay gameResults={gameResults}/>}
       <GameDisplay handleCardClick={handleCardClick} chosenPokemon={chosenPokemon} clickedCards={clickedCards} setClickedCards={setClickedCards}/>      
 
     </>
