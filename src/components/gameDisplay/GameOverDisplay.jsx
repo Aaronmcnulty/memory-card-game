@@ -1,15 +1,9 @@
-
-function GameOverDisplay({gameResults}){
-
-
-    return(
-
-        <div>
-            <p>{gameResults}</p>
-        </div>
-    )
-
+function GameOverDisplay({ gameResults }) {
+  return (
+    <div>
+      <p>{gameResults}</p>
+    </div>
+  );
 }
 
-
-export default GameOverDisplay
+export default GameOverDisplay;

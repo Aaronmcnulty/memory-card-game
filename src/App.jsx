@@ -1,100 +1,114 @@
-import { useState } from 'react'
-import './App.css'
-import { useEffect } from 'react'
-import { getRandomInt } from './modules/randomInt'
-import GameDisplay from './components/gameDisplay/GameDisplay'
-import ScoreBoard from './components/scoreBoard/ScoreBoard'
-import GameOverDisplay from './components/gameDisplay/GameOverDisplay'
-import { shuffle } from './modules/shuffle'
-import { updateHighScore } from './modules/updateHighScore'
+import { useState } from "react";
+import "./App.css";
+import { useEffect } from "react";
+import { getRandomInt } from "./modules/randomInt";
+import Header from "./components/Header";
+import GameDisplay from "./components/gameDisplay/GameDisplay";
+import ScoreBoard from "./components/scoreBoard/ScoreBoard";
+import GameOverDisplay from "./components/gameDisplay/GameOverDisplay";
+import { shuffle } from "./modules/shuffle";
+import { updateHighScore } from "./modules/updateHighScore";
+
 
 function App() {
-// https://pokeapi.co/api/v2/pokemon/ditto
-const [pokeData, setPokeData] = useState([])
-const [chosenPokemon, setChosenPokemon] = useState([])
-const [clickedCards, setClickedCards] = useState([])
-const [gameResults, setGameResults] = useState(null)
-const [highScore, setHighScore] = useState(null)
+  // https://pokeapi.co/api/v2/pokemon/ditto
+  const [pokeData, setPokeData] = useState([]);
+  const [chosenPokemon, setChosenPokemon] = useState([]);
+  const [clickedCards, setClickedCards] = useState([]);
+  const [gameResults, setGameResults] = useState(null);
+  const [highScore, setHighScore] = useState(null);
 
+  // On load the API minimal list of pokemon (name and url only) is fetched and stored in state
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
+      mode: "cors",
+    })
+      .then((response) => response.json())
+      .then((response) => setPokeData(response))
+      .catch((error) => console.error(error));
+  }, []);
 
-// On load the API minimal list of pokemon (name and url only) is fetched and stored in state
-  useEffect(() =>{
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=150&offset=0', {mode: "cors"})
-    .then((response) => response.json())
-    .then((response) => setPokeData(response))
-    .catch((error) => console.error(error))
-}, [])
+  function fetchIndividualPokedata(pokemonUrl) {
+    fetch(pokemonUrl, { mode: "cors" })
+      .then((response) => response.json())
+      .then((response) =>
+        setChosenPokemon((chosenPokemon) => [...chosenPokemon, response]),
+      )
+      .catch((error) => console.error(error));
+  }
 
-
-function fetchIndividualPokedata(pokemonUrl){
-  fetch (pokemonUrl, {mode: "cors"})
-  .then((response) => response.json())
-  .then((response) =>  setChosenPokemon((chosenPokemon) => ([...chosenPokemon, response])))
-  .catch((error) => console.error(error))
-}
-
-
-
-function choosePokes(){
-  setChosenPokemon([])
-  let pokeNums = []
-  while(pokeNums.length < 12){
-    let integer = getRandomInt(150)
-      if(!pokeNums.includes(pokeData.results[integer])){
-        pokeNums.push(pokeData.results[integer])
+  function choosePokes() {
+    setChosenPokemon([]);
+    let pokeNums = [];
+    while (pokeNums.length < 12) {
+      let integer = getRandomInt(150);
+      if (!pokeNums.includes(pokeData.results[integer])) {
+        pokeNums.push(pokeData.results[integer]);
       }
+    }
+    console.log(pokeNums);
+    pokeNums.map((item) => {
+      fetchIndividualPokedata(item.url);
+    });
   }
-  console.log(pokeNums)
-  pokeNums.map(item => {
-    fetchIndividualPokedata(item.url)
-  })
-}
 
+  const handleChoosePokes = () => {
+    setClickedCards([]);
+    choosePokes();
+  };
 
-
-const handleChoosePokes = () => {
-  setClickedCards([])
-  choosePokes()
-}
-
-const handleCardClick = (event) => {
-  console.log(event.target.id)
-  if(!clickedCards.includes(event.target.id)){
-    setClickedCards((clickedCards) => ([...clickedCards, event.target.id]))
-    setChosenPokemon(shuffle(chosenPokemon))
-  } else {
-    setChosenPokemon([])
-    setGameResults("You Lose")
-  }
-}
+  const handleCardClick = (event) => {
+    console.log(event.target.id);
+    if (!clickedCards.includes(event.target.id)) {
+      setClickedCards((clickedCards) => [...clickedCards, event.target.id]);
+      setChosenPokemon(shuffle(chosenPokemon));
+    } else {
+      setChosenPokemon([]);
+      setGameResults("You Lose");
+    }
+  };
 
   useEffect(() => {
-    updateHighScore(clickedCards, setHighScore, highScore)
-  })
+    updateHighScore(clickedCards, setHighScore, highScore);
+    checkWin(clickedCards);
+  }, [clickedCards]);
 
-
+  function checkWin(clickedCards) {
+    if (clickedCards.length === 12) {
+      console.log("win");
+      setGameResults("You Win");
+      setChosenPokemon([]);
+    }
+  }
 
   return (
     <>
-       
-      <div id={'stuff-container'}>
-        <h1>Memory Game</h1>
-        {pokeData.results && <p></p>}
+
+      <Header />
+      <div className={"stuff-container"}>
         <button onClick={handleChoosePokes}>Start</button>
+        <button>Reset</button>
       </div>
 
-      <ScoreBoard clickedCards={clickedCards} highScore={highScore}/>
-      {gameResults && <GameOverDisplay gameResults={gameResults}/>}
-      <GameDisplay handleCardClick={handleCardClick} chosenPokemon={chosenPokemon} clickedCards={clickedCards} setClickedCards={setClickedCards}/>      
 
+
+      <ScoreBoard clickedCards={clickedCards} highScore={highScore} />
+      {gameResults && <GameOverDisplay gameResults={gameResults} />}
+      <GameDisplay
+        handleCardClick={handleCardClick}
+        chosenPokemon={chosenPokemon}
+        clickedCards={clickedCards}
+        setClickedCards={setClickedCards}
+        handleChoosePokes={handleChoosePokes}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
 
-
-{/* 
+{
+  /* 
   
   Needs:
 
@@ -160,4 +174,5 @@ export default App
 
       - Remove Current score
 
-  */}
+  */
+}

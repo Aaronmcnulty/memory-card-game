@@ -1,42 +1,98 @@
-
 body{
-  display: flex;
-  justify-content: center;
-  margin: 2em;
-  width:100%;
+  background-color: rgb(77, 77, 77);
 }
 
-#stuff-container{
-  display: flex;
+#root {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.6fr 0.2fr 5fr;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0px;
+  width: 100%;
+  
 }
 
-#game-display-container{
-  display:flex;
-  border: solid;
-  justify-self: center;
-  width: 80%;
+h1, h3{
+  margin:0px;
+  border:0px;
+  padding:0px;
+}
+
+h2{
+  border:0px;
+}
+
+div{
+  margin: 0px;
+  border:0px;
+}
+
+button{
+  background-color: wheat;
+  border:none;
   border-radius: 15px;
-  background-color: teal;
+  padding:5px;
+
+}
+
+.header{
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(148, 161, 161);
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 1px;
+  padding:1em;
+}
+
+.scoreboard-container{
+  color: wheat;
+  display: flex;
+  justify-content: space-evenly;
+  grid-row: 2;
+}
+
+
+#game-display-container {
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 90%;
+  background-color: rgb(148, 161, 161);
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 1px;
   padding: 20px;
 }
 
-.pokemon-card{
+#controls-container{
+  background-color: rgb(126, 124, 124);
+  border-radius: 15px;
+  margin-bottom:10px;
+  box-shadow: 1px 1px 5px 1px;
+  padding:15px;
+}
+
+.pokemon-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:80%;
-  background-color: yellow;
+  background-color: rgb(187, 187, 171);
+  box-shadow: 1px 1px 5px 1px;
   padding: 10px;
   border-radius: 15px;
+  padding-top:15px;
 }
 
-#cards-container{
+#cards-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap:1em;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1em;
 }
 
-img {max-width:80%;}
+img {
+  max-width: 80%;
+}
