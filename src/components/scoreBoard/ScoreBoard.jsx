@@ -1,9 +1,10 @@
 function ScoreBoard({ clickedCards, highScore }) {
   return (
     <div className="scoreboard-container">
-      <p>Score: </p>
+      <h4>Score: </h4>
       <p>{clickedCards.length}</p>
-      <p>High Score</p>
+      <h4>High Score: </h4>
+      <br></br>
       <p>{highScore}</p>
     </div>
   );

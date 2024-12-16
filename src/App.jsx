@@ -2,12 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import { useEffect } from "react";
 import { getRandomInt } from "./modules/randomInt";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import GameDisplay from "./components/gameDisplay/GameDisplay";
 import ScoreBoard from "./components/scoreBoard/ScoreBoard";
 import GameOverDisplay from "./components/gameDisplay/GameOverDisplay";
 import { shuffle } from "./modules/shuffle";
 import { updateHighScore } from "./modules/updateHighScore";
+import GameControls from "./components/controls/GameControls";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
 
   const handleChoosePokes = () => {
     setClickedCards([]);
+    setGameResults(null)
     choosePokes();
   };
 
@@ -85,13 +87,7 @@ function App() {
     <>
 
       <Header />
-      <div className={"stuff-container"}>
-        <button onClick={handleChoosePokes}>Start</button>
-        <button>Reset</button>
-      </div>
-
-
-
+      
       <ScoreBoard clickedCards={clickedCards} highScore={highScore} />
       {gameResults && <GameOverDisplay gameResults={gameResults} />}
       <GameDisplay
@@ -101,6 +97,9 @@ function App() {
         setClickedCards={setClickedCards}
         handleChoosePokes={handleChoosePokes}
       />
+
+      <GameControls handleChoosePokes={handleChoosePokes} />
+      
     </>
   );
 }

@@ -13,10 +13,6 @@ function GameDisplay({
   return (
     <div id={"game-display-container"}>
 
-      <div id={'controls-container'}>
-          <Button text={'Reset'} handleClick={handleChoosePokes}/>
-      </div>
-
       <div id={"cards-container"}>
         {chosenPokemon &&
           chosenPokemon.map((item) => {
