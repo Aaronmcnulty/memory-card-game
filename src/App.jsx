@@ -47,7 +47,7 @@ function choosePokes(){
   })
 }
 
-console.log(chosenPokemon)
+
 
 const handleChoosePokes = () => {
   setClickedCards([])
@@ -58,7 +58,28 @@ const handleCardClick = (event) => {
 
   console.log(event.target.id)
   setClickedCards((clickedCards) => ([...clickedCards, event.target.id]))
+  setChosenPokemon(shuffle(chosenPokemon))
   console.log(clickedCards)
+}
+
+
+//Shuffles the array which changes the order the cards are displayed in.
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array
 }
 
   return (
