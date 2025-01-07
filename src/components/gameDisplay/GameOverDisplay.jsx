@@ -1,7 +1,7 @@
 function GameOverDisplay({ gameResults }) {
   return (
-    <div>
-      <p>{gameResults}</p>
+    <div id={'game-results'}>
+      <h1>{gameResults}</h1>
     </div>
   );
 }
