@@ -167,9 +167,23 @@ img {
     background-color: red;
   }
 
+  #game-display-container {
+    display: flex;
+    justify-self: center;
+    width: 95%;
+    height: 60%;
+  }
+
+  #cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+
   .pokemon-card{
-    width: 12%;
-    height:40%;
+    width: 60%;
+    height: 50%; 
   }
 
 }
@@ -178,6 +192,12 @@ img {
 
   body{
     background-color: rgb(102, 255, 0);
+  }
+
+  #cards-container {
+    display: grid;
+    grid-column: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-row: 1fr 1fr;
   }
 
   .pokemon-card{
