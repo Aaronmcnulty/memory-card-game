@@ -84,12 +84,18 @@ button{
   height:50%
 }
 
+.pokemon-card-title{
+  font-family: '8BIT WONDER', sans-serif;
+  font-size: xx-small;
+}
+
 #cards-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
   gap: 0.5em;
+  padding: 10px;
 }
 
 #game-display-container {
@@ -171,6 +177,11 @@ img {
     background-color: yellow;
   }
 
+  .pokemon-card-title{
+    font-family: '8BIT WONDER', sans-serif;
+    font-size:smaller;
+  }
+
   .pokemon-card{
     width: 12%;
     height:40%;
@@ -190,6 +201,10 @@ img {
     grid-template-rows: 1fr 1fr;
   }
 
+  .pokemon-card-title{
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: small;
+  }
 
   .pokemon-card{
     align-self: center;
@@ -204,6 +219,11 @@ img {
 
   body{
     background-color: rgb(102, 255, 0);
+  }
+
+  .pokemon-card-title{
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: medium;
   }
 
   #cards-container {
