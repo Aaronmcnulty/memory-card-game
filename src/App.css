@@ -86,13 +86,13 @@ button{
 
 .pokemon-card-title{
   font-family: '8BIT WONDER', sans-serif;
-  font-size: xx-small;
+  font-size: 7px;
 }
 
 #cards-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   width: 100%;
   gap: 0.5em;
   padding: 10px;
@@ -134,8 +134,8 @@ button{
   flex-direction: column;
   justify-content: space-evenly;
   flex-grow: 1;
-  width: 15%;
-  height:25%;
+  width: 72%;
+  height:82%;
   align-items: center;
   background-color: rgb(187, 187, 171);
   box-shadow: 1px 1px 10px 1px;
@@ -228,8 +228,8 @@ img {
 
   #cards-container {
     display: grid;
-    grid-column: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-row: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 
   .pokemon-card{
