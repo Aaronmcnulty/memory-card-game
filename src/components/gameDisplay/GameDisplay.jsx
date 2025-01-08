@@ -1,6 +1,7 @@
 import CardTemplate from "../cardDisplay/CardTemplate";
 import Button from "../elements/Button";
 
+// Maps the chosen pokemon through the card template and returns them in the game display.
 
 function GameDisplay({
   chosenPokemon,

@@ -1,9 +1,7 @@
-
+// Returns a card element from the API data passed to it as well as handleCardClick function. 
 
 function CardTemplate({
   cardData,
-  clickedCards,
-  setClickedCards,
   handleCardClick,
 }) {
 

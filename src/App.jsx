@@ -12,14 +12,13 @@ import GameControls from "./components/controls/GameControls";
 
 
 function App() {
-  // https://pokeapi.co/api/v2/pokemon/ditto
   const [pokeData, setPokeData] = useState([]);
   const [chosenPokemon, setChosenPokemon] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [gameResults, setGameResults] = useState(null);
   const [highScore, setHighScore] = useState(null);
 
-  // On load the API minimal list of pokemon (name and url only) is fetched and stored in state
+  // Fetches the original 150 pokemon API (name and detailed API URL only) and stores in state
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
       mode: "cors",
@@ -29,6 +28,7 @@ function App() {
       .catch((error) => console.error(error));
   }, []);
 
+  // Fetches the detailed API for individual pokemon and adds to the array in state.
   function fetchIndividualPokedata(pokemonUrl) {
     fetch(pokemonUrl, { mode: "cors" })
       .then((response) => response.json())
@@ -38,6 +38,10 @@ function App() {
       .catch((error) => console.error(error));
   }
 
+  /* Chooses 12 random numbers from 1-150 and stores the pokemon corresponding to that number.
+    If the random number is a duplicate it is ignored and a new number is chosen.
+    When 12 unique pokemon are stored each individual pokemon API is fetched using map.
+  */
   function choosePokes() {
     setChosenPokemon([]);
     let pokeNums = [];
@@ -47,18 +51,26 @@ function App() {
         pokeNums.push(pokeData.results[integer]);
       }
     }
-    console.log(pokeNums);
     pokeNums.map((item) => {
       fetchIndividualPokedata(item.url);
     });
   }
 
+  /* Removes the clicked cards stored in state during the previous game.
+     Resets the previous game result to null.
+     Triggers choosePokes function to start new game.
+  */
   const handleChoosePokes = () => {
     setClickedCards([]);
     setGameResults(null)
     choosePokes();
   };
 
+  /* When a card is clicked the first time it is stored in the clickedCards state.
+     The cards array order in state is then randomised, they then rerender in the new order. 
+     If the card is already stored in clickedCards the player loses and the current 12 pokemon are 
+     removed.
+  */
   const handleCardClick = (event) => {
     console.log(event.target.id);
     if (!clickedCards.includes(event.target.id)) {
@@ -70,6 +82,9 @@ function App() {
     }
   };
 
+  /* Each time the clickedCards state is changed the score updates with the new total.
+     Function to check if the player has won is triggered
+  */ 
   useEffect(() => {
     updateHighScore(clickedCards, setHighScore, highScore);
     checkWin(clickedCards);
@@ -106,72 +121,4 @@ function App() {
 
 export default App;
 
-{
-  /* 
-  
-  Needs:
 
-  Game Play.
-
-    Start Button 
-
-    Loading Screen
-
-    Store name and image data for selected cards in the round
-
-    Store and update current Score Tally
-
-    Store and update best Score 
-
-    Checks for Losing move
-
-    Checks for user win
-
-    Score Board
-
-    Reset Button
-
-    Reset on loss or win.
-
-
-  1. Card Creation.
-
-    - Fetch API and randomly select 12 items.
-
-    - Store image links and name.
-
-    - Template each cards visual features and add functions:
-        
-      1. Card needs to start in an 'unclicked' state.
-      2. Must register and store when it is clicked.
-
-    - Pass 8 selected items through card templates to create visual display.
-  
-  2. Card Display component.
-
-    - Display the cards in random order in the browser.
-
-    - Once a card is clicked the display order must rearange. 
-
-  3. Score Board.
-
-      - Logs total number of cards clicked
-
-      - Updates when cards state changes to clicked
-
-      - Passes the data to be stored
-
-      - Resets when game is lost
-
-      - Displays best score of all rounds
-    
-    4. Reset/Restart.
-      
-      - Restarts card creations process
-
-      - Removes stored click state
-
-      - Remove Current score
-
-  */
-}

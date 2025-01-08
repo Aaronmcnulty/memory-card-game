@@ -99,6 +99,14 @@ button{
   height: 100%;
 }
 
+#game-results{
+  position: absolute;
+  left: 40%;
+  top:50%;
+  z-index: 5;
+  height: fit-content;
+}
+
 .game-controls-container{
   align-self: center;
   bottom: -0px;
@@ -132,13 +140,7 @@ button{
   animation: grow 2s both;
 }
 
-#game-results{
-  position: absolute;
-  left: 50%;
-  top:50%;
-  z-index: 5;
-  height: fit-content;
-}
+
 
 
 img {
