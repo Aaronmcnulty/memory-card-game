@@ -8,7 +8,6 @@ function GameDisplay({
   clickedCards,
   setClickedCards,
   handleCardClick,
-  handleChoosePokes,
 }) {
   return (
     <div role="gameDisplayContainer" id={"game-display-container"}>
@@ -16,13 +15,15 @@ function GameDisplay({
         {chosenPokemon &&
           chosenPokemon.map((item) => {
             return (
-              <CardTemplate
+              <>
+              {chosenPokemon && <CardTemplate
                 handleCardClick={handleCardClick}
                 key={item.name + 1}
                 cardData={item}
                 clickedCards={clickedCards}
                 setClickedCards={setClickedCards}
-              />
+              />}
+              </>
             );
           })}
       </div>

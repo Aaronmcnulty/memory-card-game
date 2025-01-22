@@ -144,14 +144,14 @@ button {
   border: solid;
   border-style: groove;
   border-radius: 15px;
-  animation: grow 2s both;
+  animation: cardRotate 2s;
 }
 
 img {
   max-width: 100%;
 }
 
-@keyframes grow {
+@keyframes cardRotate {
   0% {
     transform: rotateY(180deg);
     opacity: 0;

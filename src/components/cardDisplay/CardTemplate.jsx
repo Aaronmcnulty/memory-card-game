@@ -2,7 +2,8 @@
 
 function CardTemplate({ cardData, handleCardClick }) {
   return (
-    <div role="cardContainer" className="pokemon-card">
+    <>
+      {cardData && <div role="cardContainer" className="pokemon-card">
       <img
         id={cardData.name}
         onClick={handleCardClick}
@@ -10,7 +11,8 @@ function CardTemplate({ cardData, handleCardClick }) {
         src={cardData.sprites.other.dream_world.front_default}
       ></img>
       <p role="cardTitle" className="pokemon-card-title">{cardData.name}</p>
-    </div>
+    </div>}
+    </>
   );
 }
 

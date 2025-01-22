@@ -71,10 +71,9 @@ function App() {
      removed.
   */
   const handleCardClick = (event) => {
-    console.log(event.target.id);
     if (!clickedCards.includes(event.target.id)) {
       setClickedCards((clickedCards) => [...clickedCards, event.target.id]);
-      setChosenPokemon(shuffle(chosenPokemon));
+      setChosenPokemon((chosenPokemon) => shuffle(chosenPokemon));
     } else {
       setChosenPokemon([]);
       setGameResults("You Lose");
@@ -91,7 +90,6 @@ function App() {
 
   function checkWin(clickedCards) {
     if (clickedCards.length === 12) {
-      console.log("win");
       setGameResults("You Win");
       setChosenPokemon([]);
     }
@@ -110,7 +108,6 @@ function App() {
         setClickedCards={setClickedCards}
         handleChoosePokes={handleChoosePokes}
       />
-
       <GameControls handleChoosePokes={handleChoosePokes} />
     </>
   );
