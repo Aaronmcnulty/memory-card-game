@@ -10,7 +10,6 @@ import { shuffle } from "./modules/shuffle";
 import { updateHighScore } from "./modules/updateHighScore";
 import GameControls from "./components/controls/GameControls";
 
-
 function App() {
   const [pokeData, setPokeData] = useState([]);
   const [chosenPokemon, setChosenPokemon] = useState([]);
@@ -62,7 +61,7 @@ function App() {
   */
   const handleChoosePokes = () => {
     setClickedCards([]);
-    setGameResults(null)
+    setGameResults(null);
     choosePokes();
   };
 
@@ -84,7 +83,7 @@ function App() {
 
   /* Each time the clickedCards state is changed the score updates with the new total.
      Function to check if the player has won is triggered
-  */ 
+  */
   useEffect(() => {
     updateHighScore(clickedCards, setHighScore, highScore);
     checkWin(clickedCards);
@@ -100,9 +99,8 @@ function App() {
 
   return (
     <>
-
       <Header />
-      
+
       <ScoreBoard clickedCards={clickedCards} highScore={highScore} />
       {gameResults && <GameOverDisplay gameResults={gameResults} />}
       <GameDisplay
@@ -114,11 +112,8 @@ function App() {
       />
 
       <GameControls handleChoosePokes={handleChoosePokes} />
-      
     </>
   );
 }
 
 export default App;
-
-

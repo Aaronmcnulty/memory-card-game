@@ -8,12 +8,10 @@ function GameDisplay({
   clickedCards,
   setClickedCards,
   handleCardClick,
-  handleChoosePokes
-  
+  handleChoosePokes,
 }) {
   return (
     <div id={"game-display-container"}>
-
       <div id={"cards-container"}>
         {chosenPokemon &&
           chosenPokemon.map((item) => {

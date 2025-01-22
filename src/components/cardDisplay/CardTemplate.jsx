@@ -1,11 +1,6 @@
-// Returns a card element from the API data passed to it as well as handleCardClick function. 
+// Returns a card element from the API data passed to it as well as handleCardClick function.
 
-function CardTemplate({
-  cardData,
-  handleCardClick,
-}) {
-
-  
+function CardTemplate({ cardData, handleCardClick }) {
   return (
     <div className="pokemon-card">
       <img

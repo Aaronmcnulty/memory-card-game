@@ -1,4 +1,4 @@
-body{
+body {
   display: flex;
   flex-direction: column;
   background-color: rgb(77, 77, 77);
@@ -6,7 +6,7 @@ body{
   width: 98%;
 }
 
-div{
+div {
   overflow: hidden;
 }
 
@@ -20,72 +20,73 @@ div{
   height: 100%;
 }
 
-h1, h3,h4{
-  margin:0px;
-  border:0px;
-  padding:0px;
-  font-family: '8BIT WONDER', sans-serif;
+h1,
+h3,
+h4 {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  font-family: "8BIT WONDER", sans-serif;
 }
 
 p::first-letter {
   text-transform: capitalize;
 }
 
-h2{
-  border:0px;
+h2 {
+  border: 0px;
 }
 
-div{
+div {
   margin: 0px;
-  border:0px;
+  border: 0px;
 }
 
-button{
+button {
   background-color: wheat;
-  border:none;
-  font-family: '8BIT WONDER', sans-serif;
+  border: none;
+  font-family: "8BIT WONDER", sans-serif;
   font-size: small;
   width: 50%;
   border-radius: 15px;
-  padding:15px;
+  padding: 15px;
   box-shadow: 1px 1px 5px 1px;
   margin: 5px;
 }
 
-.header{
+.header {
   display: flex;
   align-self: center;
   justify-content: center;
-  width:90%;
+  width: 90%;
   background-color: rgb(243, 230, 205);
   font-size: small;
   text-align: center;
   border: solid;
-  border-style:groove;
+  border-style: groove;
   border-radius: 15px;
   box-shadow: 1px 1px 5px 1px;
-  padding:1em;
+  padding: 1em;
 }
 
-.scoreboard-container{
-  margin:1em;
+.scoreboard-container {
+  margin: 1em;
   width: 98%;
   align-items: center;
   color: wheat;
   display: flex;
   justify-content: space-evenly;
-  font-family: '8BIT WONDER', sans-serif;
+  font-family: "8BIT WONDER", sans-serif;
   font-size: xx-small;
   letter-spacing: 2px;
-
 }
 
-.pokemon-card-image{
-  height:50%
+.pokemon-card-image {
+  height: 50%;
 }
 
-.pokemon-card-title{
-  font-family: '8BIT WONDER', sans-serif;
+.pokemon-card-title {
+  font-family: "8BIT WONDER", sans-serif;
   font-size: 7px;
 }
 
@@ -105,15 +106,15 @@ button{
   height: 100%;
 }
 
-#game-results{
+#game-results {
   position: absolute;
   left: 40%;
-  top:50%;
+  top: 50%;
   z-index: 5;
   height: fit-content;
 }
 
-.game-controls-container{
+.game-controls-container {
   align-self: center;
   bottom: -0px;
   display: flex;
@@ -121,10 +122,10 @@ button{
   width: 95%;
   background-color: rgb(243, 230, 205);
   border-radius: 15px;
-  margin:1em 0px 0px 0px;
+  margin: 1em 0px 0px 0px;
   box-shadow: 1px 1px 5px 1px;
-  padding:5px;
-  border:solid;
+  padding: 5px;
+  border: solid;
   border-style: double;
 }
 
@@ -135,63 +136,55 @@ button{
   justify-content: space-evenly;
   flex-grow: 1;
   width: 72%;
-  height:82%;
+  height: 82%;
   align-items: center;
   background-color: rgb(187, 187, 171);
   box-shadow: 1px 1px 10px 1px;
   padding: 10px;
-  border:solid;
+  border: solid;
   border-style: groove;
   border-radius: 15px;
   animation: grow 2s both;
 }
-
-
-
 
 img {
   max-width: 100%;
 }
 
 @keyframes grow {
-
-  0%{
-    transform:rotateY(180deg);
+  0% {
+    transform: rotateY(180deg);
     opacity: 0;
   }
-  100%{
-    transform:rotateY(0deg);
-    opacity:1;
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
   }
-
 }
 
-.pokemon-card-image:hover{
-  transition-duration:10s;
-  transform:rotate(5045deg);
+.pokemon-card-image:hover {
+  transition-duration: 10s;
+  transform: rotate(5045deg);
 }
 
 @media only screen and (min-width: 768px) {
-
-  body{
+  body {
     background-color: yellow;
   }
 
-  .pokemon-card-title{
-    font-family: '8BIT WONDER', sans-serif;
-    font-size:smaller;
+  .pokemon-card-title {
+    font-family: "8BIT WONDER", sans-serif;
+    font-size: smaller;
   }
 
-  .pokemon-card{
+  .pokemon-card {
     width: 12%;
-    height:40%;
+    height: 40%;
   }
-
 }
 
 @media only screen and (min-width: 1024px) {
-
-  body{
+  body {
     background-color: red;
   }
 
@@ -201,28 +194,26 @@ img {
     grid-template-rows: 1fr 1fr;
   }
 
-  .pokemon-card-title{
-    font-family: '8BIT WONDER', sans-serif;
+  .pokemon-card-title {
+    font-family: "8BIT WONDER", sans-serif;
     font-size: small;
   }
 
-  .pokemon-card{
+  .pokemon-card {
     align-self: center;
     justify-self: center;
     width: 70%;
-    height: 80%; 
+    height: 80%;
   }
-
 }
 
 @media only screen and (min-width: 1500px) {
-
-  body{
+  body {
     background-color: rgb(102, 255, 0);
   }
 
-  .pokemon-card-title{
-    font-family: '8BIT WONDER', sans-serif;
+  .pokemon-card-title {
+    font-family: "8BIT WONDER", sans-serif;
     font-size: medium;
   }
 
@@ -232,9 +223,8 @@ img {
     grid-template-rows: 1fr 1fr;
   }
 
-  .pokemon-card{
+  .pokemon-card {
     width: 12%;
-    height:40%;
+    height: 40%;
   }
-
 }

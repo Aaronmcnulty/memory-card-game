@@ -1,7 +1,6 @@
 function ScoreBoard({ clickedCards, highScore }) {
-  
   // Recieves the current score and highscore as props and displays in browser.
-  
+
   return (
     <div className="scoreboard-container">
       <h4>Score: </h4>
