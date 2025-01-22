@@ -2,14 +2,14 @@
 
 function CardTemplate({ cardData, handleCardClick }) {
   return (
-    <div className="pokemon-card">
+    <div role="cardContainer" className="pokemon-card">
       <img
         id={cardData.name}
         onClick={handleCardClick}
         className="pokemon-card-image"
         src={cardData.sprites.other.dream_world.front_default}
       ></img>
-      <p className="pokemon-card-title">{cardData.name}</p>
+      <p role="cardTitle" className="pokemon-card-title">{cardData.name}</p>
     </div>
   );
 }

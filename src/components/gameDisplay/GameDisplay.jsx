@@ -11,7 +11,7 @@ function GameDisplay({
   handleChoosePokes,
 }) {
   return (
-    <div id={"game-display-container"}>
+    <div role="gameDisplayContainer" id={"game-display-container"}>
       <div id={"cards-container"}>
         {chosenPokemon &&
           chosenPokemon.map((item) => {
