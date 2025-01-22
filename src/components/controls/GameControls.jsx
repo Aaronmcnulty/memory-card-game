@@ -5,8 +5,8 @@ import Button from "../elements/Button";
 function GameControls({ handleChoosePokes }) {
   return (
     <>
-      <div className={"game-controls-container"}>
-        <Button handleClick={handleChoosePokes} text={"start"} />
+      <div role="controlsContainer" className={"game-controls-container"}>
+        <Button role="startButton" handleClick={handleChoosePokes} text={"start"} />
         <Button text="Reset" />
       </div>
     </>

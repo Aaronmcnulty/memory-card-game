@@ -1,6 +1,6 @@
 
-function Button({ text, handleClick }) {
-  return <button onClick={handleClick}>{text}</button>;
+function Button({ text, handleClick, role }) {
+  return <button role={role} onClick={handleClick}>{text}</button>;
 }
 
 export default Button;

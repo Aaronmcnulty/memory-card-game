@@ -11,7 +11,7 @@ describe("Button Element", () => {
         expect(buttonElement).toBeInTheDocument()
     })
 
-    it("Should call onClick upon user click",async () => {
+    it("Should call onClick when button is clicked",async () => {
         const onClick = vi.fn()
         const user = userEvent.setup()
         render(<Button handleClick={onClick} />)
@@ -22,7 +22,7 @@ describe("Button Element", () => {
         expect(onClick).toHaveBeenCalled()
     })
 
-    it("Should call onClick upon user click",async () => {
+    it("Should NOT call onClick when button is clicked",async () => {
         const onClick = vi.fn()
         const user = userEvent.setup()
         render(<Button handleClick={onClick} />)
